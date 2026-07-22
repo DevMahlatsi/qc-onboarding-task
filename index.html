@@ -9,28 +9,44 @@
 <body>
   <div class="index-home">
     <nav>
-      Query Quest
+      
+      <h1>
+        Query Crest
+      </h1>
     </nav>
     <div>
       <form onsubmit=handleSubmit>
         <div id="loginForm" class="form">
-          <div>
-            Sign in
+          <div class="form-heading">
+            <h2>Welcome back</h2>
+            <!-- <p>Sign in to view your applications</p> -->
+          </div>
+          <div class="user-details">
+            <div class="user-details-input">
+              <label class="label-in-form" for="userEmail">Email address </label>
+            <input class="input-field-in-form" type="email" name="userEmail" id="useraEmail">
+            </div>
+            <div class="user-details-input">
+              <label class="label-in-form" for="userPassword">Password</label>
+               <input class="input-field-in-form" type="password" name="userPassword" id="userPassword">
+            </div>
+            
+            
           </div>
           <div>
-            <label for="userEmail">Email</label>
-            <input type="email" name="userEmail" id="useraEmail">
-            <label for="userPassword">Password</label>
-            <input type="password" name="userPassword" id="userPassword">
+            <button class="submit-button" type="submit">Sign in</button>
           </div>
-          <div>
-            <button type="submit">Login</button>
+          <div class="bottom-text">
+            <p>
+              <span class="change-auth-method">Don't have an account? </span>
+              <a class="register-login" onclick="window.alert('Damn Jerry, it worked');">Register</a>
+            </p>
           </div>
         </div>
         
-        <div id="registerForm" class="form">
+        <!-- <div id="registerForm" class="form" hidden>
 
-        </div>
+        </div> -->
       </form>
     </div>
   </div>
