@@ -6,6 +6,7 @@
   color: #005a45;
 }
 .form{
+  margin-top:15px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -19,6 +20,8 @@
 }
 .form-heading{
   display: flex;
+  align-items: center;
+  flex-direction: column;
   justify-content: center;
   flex-wrap: wrap;
 }
@@ -34,6 +37,12 @@
   gap: 10px;
   /* background-color: #005a45; */
 }
+.submit-button:hover{
+  cursor: pointer;
+  background-color: #004333;
+  transition-duration: .5s;
+  /* transition-behavior: ; */
+}
 .submit-button{
   background-color: #005a45;
   border: none;
@@ -41,7 +50,7 @@
   height: 50px;
   color: white;
   font-size: 16px;
-  border-radius: 30px;
+  border-radius: 12px;
 
 }
 .input-field-in-form{
