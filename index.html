@@ -6,8 +6,9 @@
   <title>Welcome</title>
   <link href="style.css" rel="stylesheet">
   <script
+    type="module"
     src="auth.js"
-    defer
+    
   ></script>
 </head>
 <body>
@@ -28,11 +29,11 @@
           <div class="user-details">
             <div class="user-details-input">
               <label class="label-in-form" for="userEmail">Email address </label>
-            <input class="input-field-in-form" type="email" name="userEmail" id="userEmail" placeholder="you@example.com">
+            <input class="input-field-in-form" type="email" name="userEmail" id="userEmailLogin" placeholder="you@example.com">
             </div>
             <div class="user-details-input">
               <label class="label-in-form" for="userPassword">Password</label>
-               <input class="input-field-in-form" type="password" name="userPassword" id="userPassword" placeholder="••••••••••">
+               <input class="input-field-in-form" type="password" name="userPasswordLogin" id="userPasswordLogin" placeholder="••••••••••">
             </div>
             
             
@@ -43,12 +44,12 @@
           <div class="bottom-text">
             <p>
               <span class="change-auth-method">Don't have an account? </span>
-              <a class="register-login toggle-auth" id="toggleAuth">Register</a>
+              <a class="register-login toggle-auth" >Register</a>
             </p>
           </div>
         </div>
       </form>  
-      <form onsubmit="handleSubmit" id="registerForm" class="form-register" hidden>
+      <form id="registerForm" class="form-register" hidden>
         <div class="form">
           <div class="form-heading">
               <h2>Welcome aboard</h2>
@@ -66,14 +67,14 @@
               <label for="userLastNameRegister" class="label-in-form">
                 Last Name
               </label>
-              <input class="input-field-in-form" type="email" name="userLastName" id="userLastNameRegister" placeholder="Maputla">
+              <input class="input-field-in-form" type="text" name="userLastName" id="userLastNameRegister" placeholder="Maputla">
             </div>
 
             <div class="user-details-input">
               <label for="userPhoneNumberRegister" class="label-in-form">
                 Phone Number
               </label>
-              <input class="input-field-in-form" type="email" name="userPhoneNumber" id="userPhoneNumberRegister" placeholder="0611148128" maxlength="10">
+              <input class="input-field-in-form" type="tel" name="userPhoneNumber" id="userPhoneNumberRegister" placeholder="0611148128" maxlength="10">
             </div>
           
           <div class="user-details-input">
@@ -85,7 +86,7 @@
           
           <div class="user-details-input">
             <label class="label-in-form" for="userPasswordRegister">Password</label>
-            <input class="input-field-in-form" type="password" name="userPassword" id="userPasswordRegister" minlength="8"placeholder="••••••••••">
+            <input class="input-field-in-form" type="password" name="userPassword" id="userPasswordRegister" minlength="8" placeholder="••••••••••">
           </div>
           
         </div>
@@ -95,11 +96,11 @@
           <div class="bottom-text">
             <p>
               <span class="change-auth-method">Already have an account?</span>
-              <a class="register-login toggle-auth" id="toggleAuth">Sign in</a>
+              <a class="register-login toggle-auth">Sign in</a>
             </p>
           </div>
         
-        <!-- </div> -->
+        </div>
       </form>
         
       
