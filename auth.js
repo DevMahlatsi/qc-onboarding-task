@@ -8,59 +8,46 @@ import { supabaseAuth } from "./supabase/functions/auth-handler/index.js";
   const loginForm = document.getElementById('loginForm');
 
 
-  const handleRegister = async (event) =>{
+  const handleRegister = async (event) => {
     event.preventDefault();
+
     const userPasswordRegister = document.getElementById("userPasswordRegister").value;
     const userEmailRegister = document.getElementById("userEmailRegister").value;
     const userFirstNameRegister = document.getElementById("userFirstNameRegister").value;
     const userLastNameRegister = document.getElementById("userLastNameRegister").value;
     const userPhoneNumberRegister = document.getElementById("userPhoneNumberRegister").value;
 
-    //I think it's better we just register and since we get the UUID regardless if we are verified or not.
-    //We'll then use the UUID to insert the data where appropriate.
-    try{
-      const {error: registerError, data: registerData} = await supabaseAuth.auth.signUp({
+    try {
+      const { error: registerError, data: registerData } = await supabaseAuth.auth.signUp({
+        email: userEmailRegister,
         password: userPasswordRegister,
-        email: userEmailRegister
-      })
+        options: {
+          data: {
+            phone: userPhoneNumberRegister,
+            first_name: userFirstNameRegister,
+            last_name: userLastNameRegister
+          }
+        }
+      });
 
-      if (registerError){
+      if (registerError) {
         throw registerError;
       }
 
-      const userId = registerData.user.id;
-
-      const {error: profileError} = await supabaseAuth
-        .from('profiles')
-        .insert({
-          id: userId,
-          phone: userPhoneNumberRegister,
-          first_name: userFirstNameRegister,
-          last_name: userLastNameRegister
-      });
-
-      if(profileError){
-        throw profileError;
-      }
-      
-      
-      window.alert(`Assuming everythign went well, please check your emails for account: ${userEmailRegister} and confirm the email.`)
+      window.alert(`Assuming everything went well, please check your emails for account: ${userEmailRegister} and confirm the email.`);
     }
     catch (error) {
       console.error('Registration error:', error);
       window.alert(`Registration failed: ${error.message}`);
     }
-
-    
-    
-  }
+  };
   const handleLogin = async (event) =>{
     event.preventDefault();
 
     const userPasswordLogin = document.getElementById("userPasswordLogin");
     const userEmailLogin = document.getElementById("userEmailLogin");
     
-    const {error: loginError, data: loginData} = await supabaseAuth.auth.signinWithPassword({
+    const {error: loginError, data: loginData} = await supabaseAuth.auth.signInWithPassword({
       email: userEmailLogin,
       password: userPasswordLogin
     })
