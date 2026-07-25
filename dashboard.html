@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Query Crest</title>
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="dashboard-page">
+    <nav>
+      <h1>Query Crest</h1>
+      <button id="logoutButton" class="submit-button">Log out</button>
+    </nav>
+
+    <main>
+      <section class="add-application-section">
+        <h2>Add Application</h2>
+        <form id="addApplicationForm" class="form">
+          <div class="user-details">
+
+            <div class="user-details-input">
+              <label class="label-in-form" for="institutionSelect">Institution</label>
+              <select class="input-field-in-form" id="institutionSelect" required>
+                <option value="" disabled selected>Select institution</option>
+              </select>
+            </div>
+
+            <div class="user-details-input">
+              <label class="label-in-form" for="courseInput">Course</label>
+              <input class="input-field-in-form" type="text" id="courseInput" placeholder="e.g. BSc Computer Science" required>
+            </div>
+
+            <div class="user-details-input">
+              <label class="label-in-form" for="academicYearSelect">Academic Year</label>
+              <select class="input-field-in-form" id="academicYearSelect" required>
+                <option value="" disabled selected>Select year</option>
+                <option value="2026">2026</option>
+                <option value="2027">2027</option>
+                <option value="2028">2028</option>
+              </select>
+            </div>
+
+            <div class="user-details-input">
+              <label class="label-in-form">Status</label>
+              <div class="status-radio-group">
+                <label>
+                  <input type="radio" name="applicationStatus" value="draft" checked>
+                  Save as Draft
+                </label>
+                <label>
+                  <input type="radio" name="applicationStatus" value="submitted">
+                  Submit Application
+                </label>
+              </div>
+            </div>
+
+            <div class="user-details-input">
+              <label class="label-in-form" for="notesInput">Notes (optional)</label>
+              <textarea class="input-field-in-form" id="notesInput" placeholder="Any additional notes..."></textarea>
+            </div>
+
+          </div>
+
+          <div id="addError" class="error-message" role="alert"></div>
+
+          <div>
+            <button class="submit-button" type="submit">Add Application</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="applications-list-section">
+        <h2>Your Applications</h2>
+        <div id="applicationsList" class="applications-list">
+          <!-- application-card items get appended here by dashboard.js -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="./dashboard.js"></script>
+</body>
+</html>
