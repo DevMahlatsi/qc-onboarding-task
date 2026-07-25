@@ -48,6 +48,11 @@ async function initDashboard() {
     });
   };
 
+  document.getElementById('logoutButton').addEventListener('click', () => {
+  sessionStorage.removeItem('qc_token');
+  window.location.href = 'index.html';
+});
+
   // Initial load
   try {
     const { data: applications, institutions } = await invoke({ action: 'load' });
