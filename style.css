@@ -44,13 +44,11 @@ html{
   flex-direction: column;
   padding: 10px;
   gap: 10px;
-  /* background-color: #005a45; */
 }
 .submit-button:hover{
   cursor: pointer;
   background-color: #004333;
   transition-duration: .5s;
-  /* transition-behavior: ; */
 }
 .submit-button{
   background-color: #005a45;
@@ -83,3 +81,116 @@ html{
   justify-content: center;
 }
 
+.dashboard-page{
+  color: #005a45;
+}
+
+.dashboard-page nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.dashboard-page nav h1{
+  font-size: 22px;
+  margin: 0;
+}
+
+#logoutButton{
+  width: auto;
+  height: 40px;
+  padding: 0 20px;
+  font-size: 14px;
+  border-radius: 8px;
+}
+
+.dashboard-page main{
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 30px;
+  padding: 30px 40px;
+  align-items: start;
+}
+
+@media (max-width: 800px){
+  .dashboard-page main{ grid-template-columns: 1fr; }
+}
+
+.add-application-section,
+.applications-list-section{
+  background: white;
+}
+
+.add-application-section h2,
+.applications-list-section h2{
+  font-size: 18px;
+  color: #005a45;
+  margin-bottom: 10px;
+}
+
+#addApplicationForm.form{
+  width: auto;
+  padding: 25px;
+}
+
+#addApplicationForm .submit-button{
+  width: 100%;
+}
+
+.status-radio-group{
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.applications-list{
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.application-card{
+  background: white;
+  border-radius: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 20px;
+}
+
+.application-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.application-header strong{
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.application-notes{
+  font-size: 13px;
+  color: gray;
+  margin-top: 8px;
+}
+
+.status-badge{
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.status-submitted{
+  background-color: #d1f0e5;
+  color: #005a45;
+}
+
+.status-draft{
+  background-color: #f0ede1;
+  color: #8a7f5c;
+}
