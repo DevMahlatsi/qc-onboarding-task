@@ -9,6 +9,7 @@ const loginError = document.getElementById('loginError');
 const registerError = document.getElementById('registerError');
 
 
+
 const NAME_REGEX = /^[A-Za-z\s]+$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -41,6 +42,7 @@ const validatePassword = (value) => {
 };
 
 
+
 const showError = (el, message) => {
   el.textContent = message;
 };
@@ -49,8 +51,19 @@ const clearError = (el) => {
   el.textContent = '';
 };
 
-const friendlyMessage = (error) => {
+
+const friendlyMessage = async (error) => {
   if (!error) return 'Something went wrong. Please try again.';
+
+  if (error.context && typeof error.context.json === 'function') {
+    try {
+      const body = await error.context.json();
+      if (body?.error) return body.error;
+    } catch {
+      
+    }
+  }
+
   if (typeof error.message === 'string' && error.message.trim()) {
     return error.message;
   }
@@ -97,14 +110,13 @@ const handleRegister = async (event) => {
     if (error) throw error;
     if (data?.error) throw new Error(data.error);
 
-    showError(registerError, '');
     registerError.style.color = '#12b76a';
     registerError.textContent = `Registered. Please check ${userEmailRegister} to confirm your email before signing in.`;
   }
   catch (error) {
     console.error('Registration error:', error);
     registerError.style.color = '#d92d20';
-    showError(registerError, friendlyMessage(error));
+    showError(registerError, await friendlyMessage(error));
   }
 };
 
@@ -141,7 +153,7 @@ const handleLogin = async (event) => {
   }
   catch (error) {
     console.error('Login error:', error);
-    showError(loginError, friendlyMessage(error));
+    showError(loginError, await friendlyMessage(error));
   }
 };
 
