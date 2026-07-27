@@ -72,7 +72,7 @@ Deno.serve(async (req) => {
       const ip = req.headers.get('x-forwarded-for');
       const normalisedEmail = String(email).trim().toLowerCase();
 
-      // Step 1 — check for an active lockout BEFORE touching the password
+      
       const lockout = await getLockout(normalisedEmail);
       if (lockout && new Date(lockout.locked_until) > new Date()) {
         const minutesRemaining = Math.ceil(
@@ -83,21 +83,20 @@ Deno.serve(async (req) => {
         }, 429);
       }
 
-      // Step 2 — attempt the actual login
+      
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
       if (!error) {
-        // Success: log it, clear any stale lockout record, return the session
         await logAttempt(normalisedEmail, ip, true);
         if (lockout) await clearLockout(normalisedEmail);
         return jsonResponse({ data }, 200);
       }
 
-      // Failure: log it, then decide whether to escalate/apply a lockout
+      
       await logAttempt(normalisedEmail, ip, false);
 
       if (lockout && lockout.lockout_type === 'short') {
-        // A short lockout previously existed and has now expired, and they failed again
+        
         await upsertLockout(normalisedEmail, 60, 'long');
         return jsonResponse({
           error: 'Your account has been locked for 1 hour due to repeated failed attempts.'
